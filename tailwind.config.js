@@ -13,8 +13,8 @@ module.exports = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       colors: {
-        "user-bubble": '#1e0032',
-        "bot-bubble": "#e7daff"
+        "user-bubble": '#1E0033',
+        "bot-bubble": "#F0EDF6"
       },
     },
   },
