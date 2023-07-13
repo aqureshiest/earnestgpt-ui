@@ -71,18 +71,22 @@ export default function Home() {
                         <div className={"text-center text-purple-800"}>
                             <div className={"inline-flex items-baseline "}>
                                 <h1 className={"flex items-center py-2 font-bold text-base"}>
-                                    <Image src={purpleTick} className={"self-center"}/>
+                                    <Image src={purpleTick}
+                                           className={"self-center"} />
                                     Deadlines
                                 </h1>
                             </div>
-                            <h1 className={"text-sm font-medium"}>Example: When is the fasfa due?</h1>
+                            <h1 className={"text-sm font-medium"}>Example: When
+                                is the fasfa due?</h1>
                             <div className={"inline-flex items-baseline"}>
                                 <h1 className={"flex items-center py-2 font-bold text-base"}>
-                                    <Image src={purpleTick} className={"self-center"}/>
+                                    <Image src={purpleTick}
+                                           className={"self-center"} />
                                     Definitions
                                 </h1>
                             </div>
-                            <h1 className={"text-sm font-medium"}>Example: What is refinancing?</h1>
+                            <h1 className={"text-sm font-medium"}>Example: What
+                                is refinancing?</h1>
                         </div>
                     </div>
                     {chatLog.map((message, index) => (
@@ -118,9 +122,9 @@ export default function Home() {
                 <div className={"p-4 text-center"}>
                     <button
                         type={"button"}
-                        onClick={()=> window.open("https://forms.gle/nSSEa9WW4rtyNZrTA")}
+                        onClick={() => window.open("https://forms.gle/nSSEa9WW4rtyNZrTA")}
                         className={"bg-transparent rounded px-4 py-2 text-sm text-earnest-green font-semibold border border-earnest-green-light"
-                    }>
+                        }>
                         Give us feedback
 
                     </button>
