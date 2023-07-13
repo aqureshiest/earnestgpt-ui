@@ -1,13 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 import { Inter } from "next/font/google";
 import axios from "axios";
 import TypingAnimation from "../components/TypingAnimation";
+import earnestIcon from "../../../public/logo.svg";
+import sendIcon from "../../../public/send.svg"
+import purpleTick from '../../../public/purpleTick.svg'
 
-const inter = Inter({ subsets: ["latin"] });
-const modelURL = "https://api.openai.com/v1/chat/completions";
+const modelURL = process.env.NEXT_PUBLIC_MODEL_URL;
 
 export default function Home() {
     const [inputValue, setInputValue] = useState("");
@@ -17,11 +19,11 @@ export default function Home() {
     const sendMessage = (message) => {
         const headers = {
             "Content-type": "application/json",
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_MODEL_API_KEY}`,
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_MODEL_API_KEY}`
         };
         const data = {
             model: "gpt-3.5-turbo-0301",
-            messages: [{ role: "user", content: message }],
+            messages: [{ role: "user", content: message }]
         };
 
         setIsLoading(true);
@@ -32,7 +34,10 @@ export default function Home() {
                 console.log({ response });
                 setChatLog((prevChatLog) => [
                     ...prevChatLog,
-                    { type: "bot", message: response.data.choices[0].message.content },
+                    {
+                        type: "bot",
+                        message: response.data.choices[0].message.content
+                    }
                 ]);
                 setIsLoading(false);
             })
@@ -43,23 +48,38 @@ export default function Home() {
     };
     const handleSubmit = (event) => {
         event.preventDefault();
-        setChatLog((prevChatLog) => [...prevChatLog, { type: "user", message: inputValue }]);
+        setChatLog((prevChatLog) => [...prevChatLog, {
+            type: "user",
+            message: inputValue
+        }]);
         sendMessage(inputValue);
         setInputValue("");
     };
 
     return (
-        <div className={"container mx-auto max-w-auto"}>
+        <div className={"mx-auto max-w-auto max-h-auto"}>
             <div className={"flex flex-col h-screen bg-white"}>
-                <h1
-                    className={
-                        "bg-gradient-to-r from-green-500 to-purple-800 text-transparent bg-clip-text py-3 font-bold text-3xl justify-start"
-                    }
-                >
-                    earnestGPT
-                </h1>
+                <div className={"p-3 shadow-md"}>
+                    <Image priority src={earnestIcon} alt={"EarnestGPT"} />
+                </div>
                 <div className={"flex-grow p-6"}>
                     <div className={"flex flex-col space-y-4"}>
+                        <div>
+                           <h1 className={"text-black text-center font-bold text-2xl"}> Welcome to EarnestGPT</h1>
+                            <h1 className={"text-gray-500 text-center text-xl py-2"}> I can share insights on the following Topics:</h1>
+                            <div className={"text-center text-purple-800"}>
+                                <div className={"inline-flex items-baseline "}>
+                                {/*<Image src={purpleTick} className={"self-center"}/>*/}
+                                <h1 className={"py-2 font-bold text-xl"}>Deadlines</h1>
+                                </div>
+                                <h1>Example: When is the fasfa due?</h1>
+                                <div className={"inline-flex items-baseline"}>
+                                    {/*<Image src={purpleTick} className={"self-center"}/>*/}
+                                    <h1 className={"py-2 font-bold text-xl"}>Definitions</h1>
+                                </div>
+                                <h1>Example: What is refinancing?</h1>
+                            </div>
+                        </div>
                         {chatLog.map((message, index) => (
                             <div
                                 key={index}
@@ -69,7 +89,7 @@ export default function Home() {
                             >
                                 <div
                                     className={`${
-                                        message.type === "user" ? "bg-purple-500" : "bg-gray-800"
+                                        message.type === "user" ? "bg-user-bubble" : "bg-bot-bubble"
                                     } rounded-lg p-4 text-white max-w-sm `}
                                 >
                                     {message.message}
@@ -77,8 +97,10 @@ export default function Home() {
                             </div>
                         ))}
                         {isLoading && (
-                            <div key={chatLog.length} className={"flex justify-start"}>
-                                <div className={"bg-gray-800 rounded-lg p-4 text-white max-w-sm"}>
+                            <div key={chatLog.length}
+                                 className={"flex justify-start"}>
+                                <div
+                                    className={"bg-gray-800 rounded-lg p-4 text-white max-w-sm"}>
                                     <TypingAnimation />
                                 </div>
                             </div>
@@ -86,25 +108,32 @@ export default function Home() {
                     </div>
                 </div>
 
-                <form onSubmit={handleSubmit} className={"flex-none p-6"}>
-                    <div className={"flex rounded-lg border border-gray-700 bg-gray-800"}>
+                <form onSubmit={handleSubmit} className={"flex-none p-6 shadow-inner"}>
+                    <div
+                        className={"text-black flex rounded-md border border-gray-300 bg-white"}>
                         <input
                             className={
-                                "flex-grow px-4 py-2 bg-transparent text-white focus:outline:none"
+                                "flex-grow px-4 py-2 bg-transparent focus:outline:none border-transparent focus:border-transparent focus:ring-0"
                             }
                             type="text"
-                            placeholder={"Add a message here"}
+                            placeholder={"Ask me a question"}
                             value={inputValue}
                             onChange={(e) => setInputValue(e.target.value)}
                         />
                         <button
                             className={
-                                "bg-purple-500 rounded-lg px-4 py-2 text-white font-semibold focus:outline-none hover:bg-purple-600 transition-colors duration-300"
+                                "p-4 bg-transparent rounded-lg px-4 py-2 text-sm text-white font-semibold focus:outline-none"
                             }
                             type={"submit"}
                         >
-                            Send{" "}
+                            <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M32.0834 2.91663L16.0417 18.9583" stroke="#00AD69" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M32.0834 2.91663L21.8751 32.0833L16.0417 18.9583L2.91675 13.125L32.0834 2.91663Z" stroke="#00AD69" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                         </button>
+                    </div>
+                    <div>
+                        <h4 className={"text-xs py-3 text-black"}>Disclaimer: EarnestGPT's advice is meant to inspire and guide you but should not replace personalized guidance from academic advisors, or professional.</h4>
                     </div>
                 </form>
             </div>
