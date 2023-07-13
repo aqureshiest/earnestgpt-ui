@@ -14,7 +14,9 @@ module.exports = {
       },
       colors: {
         "user-bubble": '#1E0033',
-        "bot-bubble": "#F0EDF6"
+        "bot-bubble": "#F0EDF6",
+        "earnest-green":"#008F58",
+        "earnest-green-light":"#00AD69"
       },
     },
   },

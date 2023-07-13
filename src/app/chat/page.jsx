@@ -71,18 +71,22 @@ export default function Home() {
                         <div className={"text-center text-purple-800"}>
                             <div className={"inline-flex items-baseline "}>
                                 <h1 className={"flex items-center py-2 font-bold text-base"}>
-                                    <Image src={purpleTick} className={"self-center"}/>
+                                    <Image src={purpleTick}
+                                           className={"self-center"} />
                                     Deadlines
                                 </h1>
                             </div>
-                            <h1 className={"text-sm font-medium"}>Example: When is the fasfa due?</h1>
+                            <h1 className={"text-sm font-medium"}>Example: When
+                                is the fasfa due?</h1>
                             <div className={"inline-flex items-baseline"}>
                                 <h1 className={"flex items-center py-2 font-bold text-base"}>
-                                    <Image src={purpleTick} className={"self-center"}/>
+                                    <Image src={purpleTick}
+                                           className={"self-center"} />
                                     Definitions
                                 </h1>
                             </div>
-                            <h1 className={"text-sm font-medium"}>Example: What is refinancing?</h1>
+                            <h1 className={"text-sm font-medium"}>Example: What
+                                is refinancing?</h1>
                         </div>
                     </div>
                     {chatLog.map((message, index) => (
@@ -105,7 +109,7 @@ export default function Home() {
                         <div key={chatLog.length}
                              className={"flex justify-start"}>
                             <div
-                                className={"bg-gray-800 rounded-lg p-4 text-white max-w-sm"}>
+                                className={"bg-gray-200 rounded-lg p-4 max-w-sm"}>
                                 <TypingAnimation />
                             </div>
                         </div>
@@ -114,7 +118,17 @@ export default function Home() {
             </div>
 
             <form onSubmit={handleSubmit}
-                  className={"flex-none p-6 shadow-inner"}>
+                  className={"flex-none p-4 shadow-inner"}>
+                <div className={"p-4 text-center"}>
+                    <button
+                        type={"button"}
+                        onClick={() => window.open("https://forms.gle/nSSEa9WW4rtyNZrTA")}
+                        className={"bg-transparent rounded px-4 py-2 text-sm text-earnest-green font-semibold border border-earnest-green-light"
+                        }>
+                        Give us feedback
+
+                    </button>
+                </div>
                 <div
                     className={"text-black flex rounded-md border border-gray-300 bg-white"}>
                     <input
@@ -128,7 +142,7 @@ export default function Home() {
                     />
                     <button
                         className={
-                            "p-4 bg-transparent rounded-lg px-4 py-2 text-sm text-white font-semibold focus:outline-none"
+                            "p-4 bg-transparent rounded-lg px-4 py-2 focus:outline-none"
                         }
                         type={"submit"}
                     >
