@@ -66,19 +66,23 @@ export default function Home() {
                     <div>
                         <h1 className={"text-black text-center font-bold text-2xl"}> Welcome
                             to EarnestGPT</h1>
-                        <h1 className={"text-gray-500 text-center text-xl py-2"}> I
+                        <h1 className={"text-gray-500 font-bold text-center text-lg py-2"}> I
                             can share insights on the following Topics:</h1>
                         <div className={"text-center text-purple-800"}>
                             <div className={"inline-flex items-baseline "}>
-                                {/*<Image src={purpleTick} className={"self-center"}/>*/}
-                                <h1 className={"py-2 font-bold text-xl"}>Deadlines</h1>
+                                <h1 className={"flex items-center py-2 font-bold text-base"}>
+                                    <Image src={purpleTick} className={"self-center"}/>
+                                    Deadlines
+                                </h1>
                             </div>
-                            <h1>Example: When is the fasfa due?</h1>
+                            <h1 className={"text-sm font-medium"}>Example: When is the fasfa due?</h1>
                             <div className={"inline-flex items-baseline"}>
-                                {/*<Image src={purpleTick} className={"self-center"}/>*/}
-                                <h1 className={"py-2 font-bold text-xl"}>Definitions</h1>
+                                <h1 className={"flex items-center py-2 font-bold text-base"}>
+                                    <Image src={purpleTick} className={"self-center"}/>
+                                    Definitions
+                                </h1>
                             </div>
-                            <h1>Example: What is refinancing?</h1>
+                            <h1 className={"text-sm font-medium"}>Example: What is refinancing?</h1>
                         </div>
                     </div>
                     {chatLog.map((message, index) => (
