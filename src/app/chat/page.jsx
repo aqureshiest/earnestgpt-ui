@@ -7,7 +7,7 @@ import axios from "axios";
 import TypingAnimation from "../components/TypingAnimation";
 
 const inter = Inter({ subsets: ["latin"] });
-const modelURL = "https://api.openai.com/v1/chat/completions";
+const modelURL = process.env.NEXT_PUBLIC_MODEL_URL;
 
 export default function Home() {
     const [inputValue, setInputValue] = useState("");
