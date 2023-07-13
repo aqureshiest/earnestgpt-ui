@@ -23,9 +23,24 @@ export default function Home() {
         getUser();
     }, []);
 
+    const redirectURL = () => {
+        let url =
+            process?.env?.NEXT_PUBLIC_OAUTH_REDIRECT_URL ?? // Manually set in vercel
+            process?.env?.NEXT_PUBLIC_SITE_URL ?? // This points to prod url
+            "http://localhost:3000"; // local
+        // Make sure to include `https://` when not localhost.
+        url = url.includes("http") ? url : `https://${url}`;
+        // Make sure to including trailing `/`.
+        // url = url.charAt(url.length - 1) === "/" ? url : `${url}/`;
+        return url;
+    };
+
     const signin = () => {
         supabase.auth.signInWithOAuth({
             provider: "google",
+            options: {
+                redirectTo: redirectURL(),
+            },
         });
     };
 
