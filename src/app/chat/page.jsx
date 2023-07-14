@@ -113,7 +113,7 @@ export default function Home() {
                                 </h1>
                             </div>
                             <h1 className={"text-sm font-medium"}>
-                                Example: When is the fasfa due?
+                                Example: When is the application date for Columbia University?
                             </h1>
                             <div className={"inline-flex items-baseline"}>
                                 <h1
