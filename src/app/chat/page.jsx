@@ -32,14 +32,14 @@ export default function Home() {
         setIsLoading(true);
 
         axios
-            .post(modelURL, data, { headers })
+            .get(`${modelURL}/${message}`)
             .then((response) => {
                 console.log({ response });
                 setChatLog((prevChatLog) => [
                     ...prevChatLog,
                     {
                         type: "bot",
-                        message: response.data.choices[0].message.content
+                        message: response.data
                     }
                 ]);
                 setIsLoading(false);
@@ -71,7 +71,7 @@ export default function Home() {
                             <div className={"inline-flex items-baseline "}>
                                 <h1 className={"flex items-center py-2 font-bold text-base"}>
                                     <Image src={purpleTick}
-                                           className={"self-center"} />
+                                           className={"self-center"}  alt={""}/>
                                     Deadlines
                                 </h1>
                             </div>
@@ -80,7 +80,7 @@ export default function Home() {
                             <div className={"inline-flex items-baseline"}>
                                 <h1 className={"flex items-center py-2 font-bold text-base"}>
                                     <Image src={purpleTick}
-                                           className={"self-center"} />
+                                           className={"self-center"}  alt={""}/>
                                     Definitions
                                 </h1>
                             </div>
