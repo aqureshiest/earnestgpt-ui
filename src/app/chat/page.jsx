@@ -62,9 +62,9 @@ export default function Home() {
     return (
         <div className={"flex flex-col h-full decoration-clone bg-white"}>
             <Banner/>
-            <div className={"flex-grow p-6"}>
+            <div className={"flex-grow p-4"}>
                 <div className={"flex flex-col space-y-4"}>
-                    <div className={"p-6"}>
+                    <div className={"p-4"}>
                         <WelcomeMessage/>
                         <Subtitle text={"I can share insights on the following Topics:"}/>
                         <div className={"text-center text-purple-800"}>
