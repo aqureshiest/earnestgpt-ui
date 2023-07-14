@@ -32,7 +32,7 @@ export default function Home() {
         setIsLoading(true);
 
         axios
-            .get(`${modelURL}/${message}`)
+            .get(`https://flask-hello-world-smoky-five.vercel.app/${message}`)
             .then((response) => {
                 console.log({ response });
                 setChatLog((prevChatLog) => [
