@@ -1,13 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
-import { Inter } from "next/font/google";
+import { useState } from "react";
 import axios from "axios";
 import TypingAnimation from "../components/TypingAnimation";
 import earnestIcon from "../../../public/logo.svg";
-import sendIcon from "../../../public/send.svg";
 import purpleTick from "../../../public/purpleTick.svg";
+import ChatBubble from "../components/ChatBubble";
 
 const modelURL = process.env.NEXT_PUBLIC_MODEL_URL;
 
@@ -90,20 +89,7 @@ export default function Home() {
                         </div>
                     </div>
                     {chatLog.map((message, index) => (
-                        <div
-                            key={index}
-                            className={`flex ${
-                                message.type === "user" ? "justify-end" : "justify-start"
-                            }`}
-                        >
-                            <div
-                                className={`${
-                                    message.type === "user" ? "bg-user-bubble text-white" : "bg-bot-bubble text-black"
-                                } rounded-lg p-4 max-w-sm text-sm`}
-                            >
-                                {message.message}
-                            </div>
-                        </div>
+                        <ChatBubble index={index} message={message}/>
                     ))}
                     {isLoading && (
                         <div key={chatLog.length}
@@ -149,14 +135,14 @@ export default function Home() {
                         <svg width="35" height="35" viewBox="0 0 35 35"
                              fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M32.0834 2.91663L16.0417 18.9583"
-                                  stroke="#00AD69" stroke-width="2"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round" />
+                                  stroke="#00AD69" strokeWidth="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round" />
                             <path
                                 d="M32.0834 2.91663L21.8751 32.0833L16.0417 18.9583L2.91675 13.125L32.0834 2.91663Z"
-                                stroke="#00AD69" stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round" />
+                                stroke="#00AD69" strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round" />
                         </svg>
                     </button>
                 </div>
