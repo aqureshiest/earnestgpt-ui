@@ -33,7 +33,6 @@ export default function Home() {
                 headers
             )
             .then((response) => {
-                console.log({ response });
                 setChatLog((prevChatLog) => [
                     ...prevChatLog,
                     {
