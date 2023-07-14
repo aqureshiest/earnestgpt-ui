@@ -10,6 +10,7 @@ import Banner from "@/app/components/Banner";
 import WelcomeMessage from "@/app/components/WelcomeMessage";
 import Subtitle from "@/app/components/Subtitle";
 import Disclaimer from "@/app/components/Disclaimer";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 const modelURL = process.env.NEXT_PUBLIC_MODEL_URL;
 
@@ -17,6 +18,8 @@ export default function Home() {
     const [inputValue, setInputValue] = useState("");
     const [chatLog, setChatLog] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+
+    const supabase = createClientComponentClient();
 
     const sendMessage = (message) => {
         const headers = {
@@ -41,6 +44,10 @@ export default function Home() {
                     },
                 ]);
                 setIsLoading(false);
+
+                // save messages
+                saveMessage({ role: "user", content: message });
+                saveMessage({ role: "ai", content: response.data.answer });
             })
             .catch((error) => {
                 setIsLoading(false);
@@ -60,10 +67,28 @@ export default function Home() {
         setInputValue("");
     };
 
+    async function saveMessage(message) {
+        let userId = "";
+        const {
+            data: { session },
+            error,
+        } = await supabase.auth.getSession();
+        if (session?.user) {
+            userId = session.user.id;
+        }
+        if (userId) {
+            await supabase
+                .from("chat_messages")
+                .insert({ ...message, user_id: userId });
+        } else {
+            await supabase.from("chat_messages").insert({ ...message });
+        }
+    }
+
     return (
-        <div className={"flex flex-col h-full decoration-clone bg-white"}>
+        <div className={"flex flex-col h-screen decoration-clone bg-white"}>
             <Banner />
-            <div className={"flex-grow p-4"}>
+            <div className={"flex-grow p-4  overflow-y-auto"}>
                 <div className={"flex flex-col space-y-4"}>
                     <div className={"p-4"}>
                         <WelcomeMessage />
