@@ -28,10 +28,10 @@ export default function Home() {
             model: "gpt-3.5-turbo-0301",
             messages: [{ role: "user", content: message }]
         };
-
+        //console.log([...chatLog, {role:"user", content:message}])
         setIsLoading(true);
         axios
-            .get(`https://flask-hello-world-smoky-five.vercel.app/${message}`)
+            .get(`https://a279-2603-7000-9c00-6348-ed12-8570-48a1-8b45.ngrok-free.app/earnestgpt/${message}`)
             .then((response) => {
                 console.log({ response });
                 setChatLog((prevChatLog) => [
