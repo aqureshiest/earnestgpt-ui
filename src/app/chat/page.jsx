@@ -6,7 +6,7 @@ import axios from "axios";
 import TypingAnimation from "../components/TypingAnimation";
 import earnestIcon from "../../../public/logo.svg";
 import purpleTick from "../../../public/purpleTick.svg";
-import ChatBubble from "@/app/components/ChatBubble";
+import ChatBubble from "../components/ChatBubble";
 
 const modelURL = process.env.NEXT_PUBLIC_MODEL_URL;
 
