@@ -32,14 +32,12 @@ export default function Home() {
                 data,
                 headers
             )
-            //axios.get(`https://a279-2603-7000-9c00-6348-ed12-8570-48a1-8b45.ngrok-free.app/earnestgpt/${message}`)
             .then((response) => {
                 console.log({ response });
                 setChatLog((prevChatLog) => [
                     ...prevChatLog,
                     {
                         role: "ai",
-                        //message: response.data
                         content: response.data.answer,
                     },
                 ]);

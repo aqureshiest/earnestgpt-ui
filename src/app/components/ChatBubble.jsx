@@ -14,7 +14,7 @@ const ChatBubble = ({index, message}) => {
         return (
             <div key={index} className={"flex justify-end"}>
                 <div className={"bg-user-bubble text-white rounded-lg p-4 max-w-sm text-sm"}>
-                    {message.message}
+                    {message.content}
                 </div>
             </div>
         )
@@ -23,7 +23,7 @@ const ChatBubble = ({index, message}) => {
             <div>
             <div key={index} className={"flex justify-start"}>
                 <div className={"bg-bot-bubble text-black rounded-lg p-4 max-w-sm text-sm"}>
-                    {message.message}
+                    {message.content}
                     <div>
                     <button className={"pr-2 pt-2"} onClick={handleOnClickThumbsUp}>
                         <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
