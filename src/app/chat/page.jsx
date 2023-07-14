@@ -73,7 +73,7 @@ export default function Home() {
             data: { session },
             error,
         } = await supabase.auth.getSession();
-        if (session?.user && false) {
+        if (session?.user) {
             userId = session.user.id;
         }
         if (userId) {
