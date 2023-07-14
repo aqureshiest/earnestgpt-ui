@@ -23,20 +23,25 @@ export default function Home() {
             "Content-type": "application/json",
         };
         const data = {
-            messages: [...chatLog, {role:"user", content:message}]
+            messages: [...chatLog, { role: "user", content: message }],
         };
         setIsLoading(true);
-        axios.post(`https://earnestgpt-llm.vercel.app/earnestgpt2`, data, headers)
-        //axios.get(`https://a279-2603-7000-9c00-6348-ed12-8570-48a1-8b45.ngrok-free.app/earnestgpt/${message}`)
+        axios
+            .post(
+                `https://earnestgpt-llm.vercel.app/earnestgpt2`,
+                data,
+                headers
+            )
+            //axios.get(`https://a279-2603-7000-9c00-6348-ed12-8570-48a1-8b45.ngrok-free.app/earnestgpt/${message}`)
             .then((response) => {
                 console.log({ response });
                 setChatLog((prevChatLog) => [
                     ...prevChatLog,
                     {
-                        role: "bot",
+                        role: "ai",
                         //message: response.data
-                        message: response.data.answer
-                    }
+                        message: response.data.answer,
+                    },
                 ]);
                 setIsLoading(false);
             })
@@ -47,10 +52,13 @@ export default function Home() {
     };
     const handleSubmit = (event) => {
         event.preventDefault();
-        setChatLog((prevChatLog) => [...prevChatLog, {
-            role: "user",
-            message: inputValue
-        }]);
+        setChatLog((prevChatLog) => [
+            ...prevChatLog,
+            {
+                role: "user",
+                message: inputValue,
+            },
+        ]);
         sendMessage(inputValue);
         setInputValue("");
     };
@@ -63,36 +71,60 @@ export default function Home() {
                     <div className={"p-4"}>
                         <WelcomeMessage />
                         <Subtitle
-                            text={"I can share insights on the following Topics:"} />
+                            text={
+                                "I can share insights on the following Topics:"
+                            }
+                        />
                         <div className={"text-center text-purple-800"}>
                             <div className={"inline-flex items-baseline "}>
-                                <h1 className={"flex items-center py-2 font-bold text-base"}>
-                                    <Image src={purpleTick}
-                                           className={"self-center"} alt={""} />
+                                <h1
+                                    className={
+                                        "flex items-center py-2 font-bold text-base"
+                                    }
+                                >
+                                    <Image
+                                        src={purpleTick}
+                                        className={"self-center"}
+                                        alt={""}
+                                    />
                                     Deadlines
                                 </h1>
                             </div>
-                            <h1 className={"text-sm font-medium"}>Example: When
-                                is the fasfa due?</h1>
+                            <h1 className={"text-sm font-medium"}>
+                                Example: When is the fasfa due?
+                            </h1>
                             <div className={"inline-flex items-baseline"}>
-                                <h1 className={"flex items-center py-2 font-bold text-base"}>
-                                    <Image src={purpleTick}
-                                           className={"self-center"} alt={""} />
+                                <h1
+                                    className={
+                                        "flex items-center py-2 font-bold text-base"
+                                    }
+                                >
+                                    <Image
+                                        src={purpleTick}
+                                        className={"self-center"}
+                                        alt={""}
+                                    />
                                     Definitions
                                 </h1>
                             </div>
-                            <h1 className={"text-sm font-medium"}>Example: What
-                                is refinancing?</h1>
+                            <h1 className={"text-sm font-medium"}>
+                                Example: What is refinancing?
+                            </h1>
                         </div>
                     </div>
                     {chatLog.map((message, index) => (
                         <ChatBubble index={index} message={message} />
                     ))}
                     {isLoading && (
-                        <div key={chatLog.length}
-                             className={"flex justify-start"}>
+                        <div
+                            key={chatLog.length}
+                            className={"flex justify-start"}
+                        >
                             <div
-                                className={"bg-gray-200 rounded-lg p-4 max-w-sm"}>
+                                className={
+                                    "bg-gray-200 rounded-lg p-4 max-w-sm"
+                                }
+                            >
                                 <TypingAnimation />
                             </div>
                         </div>
@@ -100,20 +132,28 @@ export default function Home() {
                 </div>
             </div>
 
-            <form onSubmit={handleSubmit}
-                  className={"flex-none p-4 shadow-inner"}>
+            <form
+                onSubmit={handleSubmit}
+                className={"flex-none p-4 shadow-inner"}
+            >
                 <div className={"p-4 text-center"}>
                     <button
                         type={"button"}
-                        onClick={() => window.open("https://forms.gle/nSSEa9WW4rtyNZrTA")}
-                        className={"bg-transparent rounded px-4 py-2 text-sm text-earnest-green font-semibold border border-earnest-green-light"
-                        }>
+                        onClick={() =>
+                            window.open("https://forms.gle/nSSEa9WW4rtyNZrTA")
+                        }
+                        className={
+                            "bg-transparent rounded px-4 py-2 text-sm text-earnest-green font-semibold border border-earnest-green-light"
+                        }
+                    >
                         Give us feedback
-
                     </button>
                 </div>
                 <div
-                    className={"text-black flex rounded-md border border-gray-300 bg-white"}>
+                    className={
+                        "text-black flex rounded-md border border-gray-300 bg-white"
+                    }
+                >
                     <input
                         className={
                             "flex-grow px-4 py-2 bg-transparent focus:outline:none border-transparent focus:border-transparent focus:ring-0"
@@ -129,17 +169,27 @@ export default function Home() {
                         }
                         type={"submit"}
                     >
-                        <svg width="35" height="35" viewBox="0 0 35 35"
-                             fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M32.0834 2.91663L16.0417 18.9583"
-                                  stroke="#00AD69" strokeWidth="2"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round" />
+                        <svg
+                            width="35"
+                            height="35"
+                            viewBox="0 0 35 35"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M32.0834 2.91663L16.0417 18.9583"
+                                stroke="#00AD69"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
                             <path
                                 d="M32.0834 2.91663L21.8751 32.0833L16.0417 18.9583L2.91675 13.125L32.0834 2.91663Z"
-                                stroke="#00AD69" strokeWidth="2"
+                                stroke="#00AD69"
+                                strokeWidth="2"
                                 strokeLinecap="round"
-                                strokeLinejoin="round" />
+                                strokeLinejoin="round"
+                            />
                         </svg>
                     </button>
                 </div>
