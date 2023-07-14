@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useState } from "react";
 import axios from "axios";
 import TypingAnimation from "../components/TypingAnimation";
-import earnestIcon from "../../../public/logo.svg";
 import purpleTick from "../../../public/purpleTick.svg";
 import ChatBubble from "../components/ChatBubble";
 import Banner from "@/app/components/Banner";
@@ -31,7 +30,7 @@ export default function Home() {
         //console.log([...chatLog, {role:"user", content:message}])
         setIsLoading(true);
         axios
-            .get(`https://a279-2603-7000-9c00-6348-ed12-8570-48a1-8b45.ngrok-free.app/earnestgpt/${message}`)
+            .get(`https://a279-2603-7000-9c00-6348-ed12-8570-48a1-8b45.ngrok-free.app/earnestgpt/${message}`, { headers: { "ngrok-skip-browser-warning": true } })
             .then((response) => {
                 console.log({ response });
                 setChatLog((prevChatLog) => [
@@ -60,17 +59,18 @@ export default function Home() {
 
     return (
         <div className={"flex flex-col h-full decoration-clone bg-white"}>
-            <Banner/>
+            <Banner />
             <div className={"flex-grow p-4"}>
                 <div className={"flex flex-col space-y-4"}>
                     <div className={"p-4"}>
-                        <WelcomeMessage/>
-                        <Subtitle text={"I can share insights on the following Topics:"}/>
+                        <WelcomeMessage />
+                        <Subtitle
+                            text={"I can share insights on the following Topics:"} />
                         <div className={"text-center text-purple-800"}>
                             <div className={"inline-flex items-baseline "}>
                                 <h1 className={"flex items-center py-2 font-bold text-base"}>
                                     <Image src={purpleTick}
-                                           className={"self-center"}  alt={""}/>
+                                           className={"self-center"} alt={""} />
                                     Deadlines
                                 </h1>
                             </div>
@@ -79,7 +79,7 @@ export default function Home() {
                             <div className={"inline-flex items-baseline"}>
                                 <h1 className={"flex items-center py-2 font-bold text-base"}>
                                     <Image src={purpleTick}
-                                           className={"self-center"}  alt={""}/>
+                                           className={"self-center"} alt={""} />
                                     Definitions
                                 </h1>
                             </div>
@@ -88,7 +88,7 @@ export default function Home() {
                         </div>
                     </div>
                     {chatLog.map((message, index) => (
-                        <ChatBubble index={index} message={message}/>
+                        <ChatBubble index={index} message={message} />
                     ))}
                     {isLoading && (
                         <div key={chatLog.length}
@@ -146,7 +146,7 @@ export default function Home() {
                     </button>
                 </div>
                 <div>
-                    <Disclaimer/>
+                    <Disclaimer />
                 </div>
             </form>
         </div>
