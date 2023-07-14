@@ -56,7 +56,7 @@ export default function Home() {
             ...prevChatLog,
             {
                 role: "user",
-                message: inputValue,
+                content: inputValue,
             },
         ]);
         sendMessage(inputValue);
