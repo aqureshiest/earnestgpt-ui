@@ -21,23 +21,21 @@ export default function Home() {
     const sendMessage = (message) => {
         const headers = {
             "Content-type": "application/json",
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_MODEL_API_KEY}`
         };
         const data = {
-            model: "gpt-3.5-turbo-0301",
-            messages: [{ role: "user", content: message }]
+            messages: [...chatLog, {role:"user", content:message}]
         };
-        //console.log([...chatLog, {role:"user", content:message}])
         setIsLoading(true);
-        axios
-            .get(`https://a279-2603-7000-9c00-6348-ed12-8570-48a1-8b45.ngrok-free.app/earnestgpt/${message}`, { headers: { "ngrok-skip-browser-warning": true } })
+        //axios.post(`https://a279-2603-7000-9c00-6348-ed12-8570-48a1-8b45.ngrok-free.app/earnestgpt/${message}`, data, headers)
+        axios.get(`https://a279-2603-7000-9c00-6348-ed12-8570-48a1-8b45.ngrok-free.app/earnestgpt/${message}`)
             .then((response) => {
                 console.log({ response });
                 setChatLog((prevChatLog) => [
                     ...prevChatLog,
                     {
-                        type: "bot",
+                        role: "bot",
                         message: response.data
+                        //message: response.data.answer
                     }
                 ]);
                 setIsLoading(false);
@@ -50,7 +48,7 @@ export default function Home() {
     const handleSubmit = (event) => {
         event.preventDefault();
         setChatLog((prevChatLog) => [...prevChatLog, {
-            type: "user",
+            role: "user",
             message: inputValue
         }]);
         sendMessage(inputValue);

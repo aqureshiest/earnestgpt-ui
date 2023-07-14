@@ -10,7 +10,7 @@ const ChatBubble = ({index, message}) => {
         console.log('I disliked it!')
     }
 
-    if (message.type === "user"){
+    if (message.role === "user"){
         return (
             <div key={index} className={"flex justify-end"}>
                 <div className={"bg-user-bubble text-white rounded-lg p-4 max-w-sm text-sm"}>
