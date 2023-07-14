@@ -30,7 +30,6 @@ export default function Home() {
         };
 
         setIsLoading(true);
-        console.log(`https://flask-hello-world-smoky-five.vercel.app/${message}`)
         axios
             .get(`https://flask-hello-world-smoky-five.vercel.app/${message}`)
             .then((response) => {
