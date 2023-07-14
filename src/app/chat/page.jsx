@@ -40,7 +40,7 @@ export default function Home() {
                     {
                         role: "ai",
                         //message: response.data
-                        message: response.data.answer,
+                        content: response.data.answer,
                     },
                 ]);
                 setIsLoading(false);
