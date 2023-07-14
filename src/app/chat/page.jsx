@@ -7,6 +7,10 @@ import TypingAnimation from "../components/TypingAnimation";
 import earnestIcon from "../../../public/logo.svg";
 import purpleTick from "../../../public/purpleTick.svg";
 import ChatBubble from "../components/ChatBubble";
+import Banner from "@/app/components/Banner";
+import WelcomeMessage from "@/app/components/WelcomeMessage";
+import Subtitle from "@/app/components/Subtitle";
+import Disclaimer from "@/app/components/Disclaimer";
 
 const modelURL = process.env.NEXT_PUBLIC_MODEL_URL;
 
@@ -57,16 +61,12 @@ export default function Home() {
 
     return (
         <div className={"flex flex-col h-full decoration-clone bg-white"}>
-            <div className={"p-5 shadow-md"}>
-                <Image priority src={earnestIcon} alt={"EarnestGPT"} />
-            </div>
+            <Banner/>
             <div className={"flex-grow p-6"}>
                 <div className={"flex flex-col space-y-4"}>
-                    <div>
-                        <h1 className={"text-black text-center font-bold text-2xl"}> Welcome
-                            to EarnestGPT</h1>
-                        <h1 className={"text-gray-500 font-bold text-center text-lg py-2"}> I
-                            can share insights on the following Topics:</h1>
+                    <div className={"p-6"}>
+                        <WelcomeMessage/>
+                        <Subtitle text={"I can share insights on the following Topics:"}/>
                         <div className={"text-center text-purple-800"}>
                             <div className={"inline-flex items-baseline "}>
                                 <h1 className={"flex items-center py-2 font-bold text-base"}>
@@ -147,10 +147,7 @@ export default function Home() {
                     </button>
                 </div>
                 <div>
-                    <h4 className={"text-xs py-3 text-black"}>Disclaimer:
-                        EarnestGPT's advice is meant to inspire and guide you
-                        but should not replace personalized guidance from
-                        academic advisors, or professional.</h4>
+                    <Disclaimer/>
                 </div>
             </form>
         </div>
