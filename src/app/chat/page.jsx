@@ -26,16 +26,16 @@ export default function Home() {
             messages: [...chatLog, {role:"user", content:message}]
         };
         setIsLoading(true);
-        //axios.post(`https://a279-2603-7000-9c00-6348-ed12-8570-48a1-8b45.ngrok-free.app/earnestgpt/${message}`, data, headers)
-        axios.get(`https://a279-2603-7000-9c00-6348-ed12-8570-48a1-8b45.ngrok-free.app/earnestgpt/${message}`)
+        axios.post(`https://earnestgpt-llm.vercel.app/earnestgpt2`, data, headers)
+        //axios.get(`https://a279-2603-7000-9c00-6348-ed12-8570-48a1-8b45.ngrok-free.app/earnestgpt/${message}`)
             .then((response) => {
                 console.log({ response });
                 setChatLog((prevChatLog) => [
                     ...prevChatLog,
                     {
                         role: "bot",
-                        message: response.data
-                        //message: response.data.answer
+                        //message: response.data
+                        message: response.data.answer
                     }
                 ]);
                 setIsLoading(false);
