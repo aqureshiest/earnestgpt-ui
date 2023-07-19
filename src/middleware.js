@@ -13,6 +13,13 @@ export async function middleware(req) {
 
     // Check auth condition
     if (session?.user.email) {
+        // make sure only earnet users have access
+        if (!session?.user.email.endsWith("earnest.com")) {
+            const redirectUrl = req.nextUrl.clone();
+            redirectUrl.pathname = "/restricted";
+            return NextResponse.redirect(redirectUrl);
+        }
+
         // Authentication successful, forward request to protected route.
         return res;
     }
